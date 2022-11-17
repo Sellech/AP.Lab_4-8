@@ -40,7 +40,7 @@ public abstract class Plane {
         this.flyDistance = flyDistance;
     }
 
-    public void setFuelConsumption(int fuelConsumption) {
+    public void setFuelConsumption(double fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
     }
 }

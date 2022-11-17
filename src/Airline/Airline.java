@@ -9,10 +9,10 @@ public class Airline {
 
     public boolean exist = false;
     private String airlineName;
-    private ArrayList <Plane> cargoPlaneList = new ArrayList<Plane>();
-    private ArrayList <Plane> passengerPlaneList = new ArrayList<Plane>();
-    private ArrayList <Plane> cargoPlaneTypeList = new ArrayList<Plane>();
-    private ArrayList <Plane> passengerPlaneTypeList = new ArrayList<Plane>();
+    private ArrayList <CargoPlane> cargoPlaneList = new ArrayList<CargoPlane>();
+    private ArrayList <PassengerPlane> passengerPlaneList = new ArrayList<PassengerPlane>();
+    private ArrayList <CargoPlane> cargoPlaneTypeList = new ArrayList<CargoPlane>();
+    private ArrayList <PassengerPlane> passengerPlaneTypeList = new ArrayList<PassengerPlane>();
 
     /**
      * Метод для створення нової авіакомпанії; також каталог
@@ -50,7 +50,7 @@ public class Airline {
     }
 
     /**
-     * Метод для додавання літака в авіапарк авіакомпанії
+     * Метод для додавання літака в авіапарк компанії
      */
     public void PlaneAdd(){
         int choice, i;
@@ -127,8 +127,147 @@ public class Airline {
         }
     }
 
+    /**
+     * Метод для зміни характеристик літаків
+     */
     public void PlaneChange(){
+        int choice, parameterChoice;
 
+        // Обираємо тип літака, який хочемо змінити
+        System.out.println("Оберіть категорію літака для зміни: ");
+        System.out.println("\t1) Вантажний\n\t2) Пасажирський");
+        while(true){
+            choice = in.nextInt();
+            if(choice == 1 || choice == 2){
+                break;
+            }
+            else
+                System.out.print("Неправильна команда! Введіть повторно: ");
+        }
+
+        // Для вантажних
+        if(choice == 1) {
+            // Перевірка на наявність літаків
+            if(cargoPlaneList.size() == 0){
+                System.out.println("В авіапарку вантажних літаків компанії пусто!");
+                return;
+            }
+            // Виводимо список літаків
+            System.out.print("Оберіть літак: ");
+            for(int i=0; i<cargoPlaneList.size(); i++)
+                System.out.print("\n\t"+(i+1)+") "+cargoPlaneList.get(i).getName()
+                        +" "+cargoPlaneList.get(i).getSideNumber());
+            System.out.print("\n");
+
+            while (true){
+                choice = in.nextInt();
+                // Змінюємо характеристики
+                if((choice > 0) && (choice <= cargoPlaneList.size()+1)){
+                    System.out.println("\t1) Назва"+"\n\t2) Бортовий номер"+"\n\t3) Вантажопідйомність"
+                            +"\n\t4) Дальність"+"\n\t5) Споживання палива"+"\n\t6) Завершити");
+                    while(true){
+                        System.out.print("Оберіть характеристику для зміни: ");
+                        parameterChoice = in.nextInt();
+
+                        switch (parameterChoice){
+                            case 1 -> {
+                                System.out.print("\tВведіть нову назву: ");
+                                String newName = in.next();
+                                cargoPlaneList.get(choice-1).setName(newName);
+                            }
+                            case 2 -> {
+                                System.out.print("\tВведіть новий бортовий номер: ");
+                                String newSideNumber = in.next();
+                                cargoPlaneList.get(choice-1).setSideNumber(newSideNumber);
+                            }
+                            case 3 -> {
+                                System.out.print("\tВведіть нову вантажопідйомність: ");
+                                int newCargoCapacity = in.nextInt();
+                                cargoPlaneList.get(choice-1).setCargoCapacity(newCargoCapacity);
+                            }
+                            case 4 -> {
+                                System.out.print("\tВведіть нову дальність: ");
+                                int newFlyDistance = in.nextInt();
+                                cargoPlaneList.get(choice-1).setFlyDistance(newFlyDistance);
+                            }
+                            case 5 -> {
+                                System.out.print("\tВведіть новий розхід палива: ");
+                                double newFuelConsumption = in.nextDouble();
+                                cargoPlaneList.get(choice-1).setFuelConsumption(newFuelConsumption);
+                            }
+                            case 6 -> {
+                                return;
+                            }
+                        }
+
+                    }
+                }
+                else
+                    System.out.print("Неправильна команда! Введіть повторно: ");
+            }
+
+        }
+        // Для пасажирських
+        else {
+            // Перевірка на наявність літаків
+            if(passengerPlaneList.size() == 0){
+                System.out.println("В авіапарку пасажирський літаків компанії пусто!");
+                return;
+            }
+            // Виводимо список літаків
+            System.out.print("Оберіть літак: ");
+            for(int i=0; i<passengerPlaneList.size(); i++)
+                System.out.print("\n\t"+(i+1)+") "+passengerPlaneList.get(i).getName()
+                        +" "+passengerPlaneList.get(i).getSideNumber());
+            System.out.print("\n");
+
+            while (true){
+                choice = in.nextInt();
+                // Змінюємо характеристики
+                if((choice > 0) && (choice <= passengerPlaneList.size()+1)){
+                    System.out.println("\t1) Назва"+"\n\t2) Бортовий номер"+"\n\t3) Пасажиромісткість"
+                            +"\n\t4) Дальність"+"\n\t5) Споживання палива"+"\n\t6) Завершити");
+                    while(true){
+                        System.out.print("Оберіть характеристику для зміни: ");
+                        parameterChoice = in.nextInt();
+
+                        switch (parameterChoice){
+                            case 1 -> {
+                                System.out.print("\tВведіть нову назву: ");
+                                String newName = in.next();
+                                passengerPlaneList.get(choice-1).setName(newName);
+                            }
+                            case 2 -> {
+                                System.out.print("\tВведіть новий бортовий номер: ");
+                                String newSideNumber = in.next();
+                                passengerPlaneList.get(choice-1).setSideNumber(newSideNumber);
+                            }
+                            case 3 -> {
+                                System.out.print("\tВведіть нову пасажиромісткість: ");
+                                int newPassengerCapacity = in.nextInt();
+                                passengerPlaneList.get(choice-1).setPassengerCapacity(newPassengerCapacity);
+                            }
+                            case 4 -> {
+                                System.out.print("\tВведіть нову дальність: ");
+                                int newFlyDistance = in.nextInt();
+                                passengerPlaneList.get(choice-1).setFlyDistance(newFlyDistance);
+                            }
+                            case 5 -> {
+                                System.out.print("\tВведіть новий розхід палива: ");
+                                double newFuelConsumption = in.nextDouble();
+                                passengerPlaneList.get(choice-1).setFuelConsumption(newFuelConsumption);
+                            }
+                            case 6 -> {
+                                return;
+                            }
+                        }
+
+                    }
+                }
+                else
+                    System.out.print("Неправильна команда! Введіть повторно: ");
+            }
+        }
     }
 
 
@@ -140,7 +279,11 @@ public class Airline {
 
     }
 
+    /**
+     * Метод виводить на екран список літаків
+     */
     public void PlaneList(){
+        System.out.println("Наявні літаки:");
 
     }
 
@@ -168,7 +311,7 @@ public class Airline {
      * Метод для створення та додавання в каталог нового вантажного літака
      * @return вантажний літак з введеним бортовим номером
      */
-    private Plane CreateNewCargoPlane(){
+    private CargoPlane CreateNewCargoPlane(){
         System.out.println("Введіть характеристики:");
 
         System.out.print("\t1) Назва: ");
@@ -192,7 +335,7 @@ public class Airline {
      * Метод для створення та додавання в каталог нового пасажирського літака
      * @return пасажирський літак з введеним бортовим номером
      */
-    private Plane CreateNewPassengerPlane(){
+    private PassengerPlane CreateNewPassengerPlane(){
         System.out.println("Введіть характеристики:");
 
         System.out.print("\t1) Назва: ");
@@ -206,7 +349,7 @@ public class Airline {
         System.out.print("\t5) Кількість пасажирських місць: ");
         int passengerCapacity = in.nextInt();;
 
-        CargoPlane plane = new CargoPlane(name, flyDistance, fuelConsumption, passengerCapacity);
+        PassengerPlane plane = new PassengerPlane(name, flyDistance, fuelConsumption, passengerCapacity);
         passengerPlaneTypeList.add(plane);
         plane.setSideNumber(sideNumber);
         return plane;
