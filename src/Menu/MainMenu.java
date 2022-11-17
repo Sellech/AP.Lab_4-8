@@ -20,7 +20,7 @@ public class MainMenu {
     }
 
     public static void runMenu() throws Exception {
-        if(!airline.getExist()){
+        if(!airline.exist){
             System.out.println("""            
                 --------------------------------------------------------------
                 |   Список команд:                                           |
@@ -33,7 +33,7 @@ public class MainMenu {
         }
         else{
             System.out.println("""            
-                --------------------------------------------------------------
+                \n--------------------------------------------------------------
                 |   Список команд:                                           |
                 |       1) Help (опис функціоналу)                           |
                 |       2) Інформація про авіакомпанію                       |
@@ -64,7 +64,7 @@ public class MainMenu {
 
         Command[] commandArray;
 
-        if(!airline.getExist()){
+        if(!airline.exist){
             commandArray = new Command[]{
                     new ProgramInfo(),
                     new CreateAirline(),
@@ -75,6 +75,7 @@ public class MainMenu {
         else{
             commandArray = new Command[]{
                     new Help(),
+                    new AirlineInfo(),
                     new PlaneAdd(),
                     new PlaneDelete(),
                     new PlaneChange(),

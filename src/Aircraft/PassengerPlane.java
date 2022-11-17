@@ -7,4 +7,12 @@ public class PassengerPlane extends Plane {
         super(name, flyDistance, fuelConsumption);
         this.passengerCapacity = passengerCapacity;
     }
+
+    public int getPassengerCapacity() {
+        return passengerCapacity;
+    }
+
+    public void setPassengerCapacity(int passengerCapacity) {
+        this.passengerCapacity = passengerCapacity;
+    }
 }

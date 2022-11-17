@@ -2,7 +2,7 @@ package Aircraft;
 
 public abstract class Plane {
     private String name;
-    private int sideNumber = 0;
+    private String sideNumber = "0";
     private int flyDistance; // км
     private double fuelConsumption; // т/год
 
@@ -16,7 +16,7 @@ public abstract class Plane {
         return name;
     }
 
-    public int getSideNumber() {
+    public String getSideNumber() {
         return sideNumber;
     }
 
@@ -32,7 +32,7 @@ public abstract class Plane {
         this.name = name;
     }
 
-    public void setSideNumber(int sideNumber) {
+    public void setSideNumber(String sideNumber) {
         this.sideNumber = sideNumber;
     }
 
