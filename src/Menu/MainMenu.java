@@ -26,8 +26,7 @@ public class MainMenu {
                 |   Список команд:                                           |
                 |       1) Інформація про програму                           |
                 |       2) Створити авіакомпанію                             |
-                |       3) Зчитати з файлу                                   |
-                |       4) Вийти з програми                                  |
+                |       3) Вийти з програми                                  |
                 --------------------------------------------------------------
                 """);
         }
@@ -50,8 +49,7 @@ public class MainMenu {
                 |      10) Підрахувати загальну місткість та                 |
                 |          вантажопідйомність всього авіапарку               |
                 |                                                            |
-                |      11) Зберегти у файл                                   |
-                |      12) Вийти з програми                                  |
+                |      11) Вийти з програми                                  |
                 --------------------------------------------------------------
                 """);
         }
@@ -68,7 +66,6 @@ public class MainMenu {
             commandArray = new Command[]{
                     new ProgramInfo(),
                     new CreateAirline(),
-                    new ReadFromFile(),
                     new Exit()
             };
         }
@@ -84,7 +81,6 @@ public class MainMenu {
                     new PlaneListSort(),
                     new PlaneListRange(),
                     new PlaneListSummary(),
-                    new SaveToFile(),
                     new Exit()
             };
         }
