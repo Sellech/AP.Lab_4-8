@@ -299,7 +299,6 @@ public class Airline {
             return;
         }
         int choice;
-        Plane temp;
 
         System.out.println("Оберіть параметр для сортування:");
         System.out.println("\t1) Дальність польоту\n\t2) Споживання палива" +
@@ -339,21 +338,71 @@ public class Airline {
      * Підрахування загальної місткості та вантажопідйомності всього авіапарку
      */
     public void PlaneListSummary(){
+        if(PlaneList.size() == 0){
+            System.out.println("В авіапарку компанії ще немає жодного літака!");
+            return;
+        }
+        int choice, sum=0, planeSum=0;
 
+        System.out.println("Оберіть параметр виведення загального значення:");
+        System.out.println("\t1) Вантажопідйомність\n\t2) Пасажиромісткість");
+        while(true){
+            choice = in.nextInt();
+            if ((choice > 0) && (choice <= 2)){
+                switch (choice){
+                    case 1 -> {
+                        for(int i=0; i<PlaneList.size(); i++){
+                            sum += PlaneList.get(i).getCargoCapacity();
+                            if(PlaneList.get(i).getCargoCapacity() != 0)
+                                planeSum++;
+                        }
+                        System.out.print("Загальна вантажопідйомність: "+sum+" (т)");
+                    }
+                    case 2 -> {
+                        for(int i=0; i<PlaneList.size(); i++){
+                            sum += PlaneList.get(i).getPassengerCapacity();
+                            if(PlaneList.get(i).getPassengerCapacity() != 0)
+                                planeSum++;
+                        }
+                        System.out.print("Загальна пасажиромісткість: "+sum+" (місць)");
+                    }
+                }
+                System.out.print(", загалом " + planeSum + " літаків для даного завдання");
+                break;
+            }
+            else{
+                System.out.print("\nВи ввели неправильне значення! Введіть повторно: ");
+            }
+        }
     }
 
     /**
      * Виведення підказки користувачу
      */
     public void Help(){
-
+        System.out.println("Коротка підказка по користуванню програмою:");
+        System.out.println("\t- Для користуванням меню, необхідно ввести цифру, яка відповідає номеру" +
+                "обраного вами пункту.\n\t  Наприклад: 1) Створити авіакомпанію  ->  1 + \"Enter\"");
+        System.out.println("\t- Даний принцип використовується у всіх розділах меню програми\n");
     }
 
     /**
-     * Виведення інформації про авіалінію
+     * Виведення інформації про авіакомпанію
      */
     public void AirlineInfo(){
+        System.out.println("Коротка довідка:\n\tАвіакомпанія \"" + airlineName + "\"" +
+                ", кількість літаків в розпорядженні: "+PlaneList.size());
+    }
 
+    /**
+     * Виведення інформації про призначення програми та автора
+     */
+    public void ProgramInfo(){
+        System.out.println("Airline application - програма для ведення зручного обліку літаків, " +
+                "наявних у розпорядженні авіакомпанії.\nТакож присутні додаткові можливості, такі як" +
+                " обчислення загальної вантажо/пасажиро підйомності та\nвиведення списку наявних літаків" +
+                " у вказаному діапазоні параметрів. Приємного користування!\n\nАвтор: Студент групи КН-207" +
+                "\n\t   Чепюк Ярослав\n");
     }
 
     /**
