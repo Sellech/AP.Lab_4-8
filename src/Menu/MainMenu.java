@@ -89,6 +89,6 @@ public class MainMenu {
             commandArray[input-1].execute(airline);
         }
         else
-            System.out.println("Неправильна команда!");
+            System.out.print("\nВи ввели неправильне значення! Введіть повторно: ");
     }
 }

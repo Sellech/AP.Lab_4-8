@@ -9,11 +9,21 @@ public class Plane {
     private double cargoCapacity;  // т
 
     /**
-     * Конструктор
+     * Конструктори
      */
     public Plane(String name, int flyDistance, double fuelConsumption,
                  int passengerCapacity, double cargoCapacity) {
         this.name = name;
+        this.flyDistance = flyDistance;
+        this.fuelConsumption = fuelConsumption;
+        this.passengerCapacity = passengerCapacity;
+        this.cargoCapacity = cargoCapacity;
+    }
+
+    public Plane(String name, String sideNumber, int flyDistance, double fuelConsumption,
+                 int passengerCapacity, double cargoCapacity) {
+        this.name = name;
+        this.sideNumber = sideNumber;
         this.flyDistance = flyDistance;
         this.fuelConsumption = fuelConsumption;
         this.passengerCapacity = passengerCapacity;
@@ -31,6 +41,16 @@ public class Plane {
         this.cargoCapacity = plane.cargoCapacity;
     }
 
+    @Override
+    public String toString() {
+        return ("\t"+name
+                +"\nБортовий номер: "+ sideNumber
+                +"\nМакс. дальність: "+ flyDistance + " (км)"
+                +"\nВитрата палива: "+ fuelConsumption + "(т/год)"
+                +"\nВантажопідйомність: "+ cargoCapacity + "(т)"
+                +"\nКількість пасажирських місць: "+ passengerCapacity
+        );
+    }
     public String getName() {
         return name;
     }
