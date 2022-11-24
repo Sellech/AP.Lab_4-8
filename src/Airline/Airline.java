@@ -1,8 +1,11 @@
 package Airline;
 
 import Aircraft.*;
+import Aircraft.Comparator.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Comparator;
+
 
 /**
  * Клас авіакомпанії, який зберігає список авіапарку, каталог,
@@ -291,7 +294,45 @@ public class Airline {
      * Сортування списку літаків за обраним параметром
      */
     public void PlaneListSort(){
+        if(PlaneList.size() == 0){
+            System.out.println("В авіапарку компанії ще немає жодного літака!");
+            return;
+        }
+        int choice;
+        Plane temp;
 
+        System.out.println("Оберіть параметр для сортування:");
+        System.out.println("\t1) Дальність польоту\n\t2) Споживання палива" +
+                "\n\t3) Вантажопідйомність\n\t4) Пасажиромісткість:");
+        while(true){
+            choice = in.nextInt();
+            if ((choice > 0) && (choice < 5)) {
+                Comparator comparator;
+                switch (choice){
+                    case 1 -> {
+                        comparator = new FlyDistanceComparator();
+                        PlaneList.sort(comparator);
+                    }
+                    case 2 -> {
+                        comparator = new FuelConsumptionComparator();
+                        PlaneList.sort(comparator);
+                    }
+                    case 3 -> {
+                        comparator = new CargoCapacityComparator();
+                        PlaneList.sort(comparator);
+                    }
+                    case 4 -> {
+                        comparator = new PassengerCapacityComparator();
+                        PlaneList.sort(comparator);
+                    }
+                }
+                System.out.println("Список літаків було успішно відсортовано!");
+                break;
+            }
+            else{
+                System.out.print("\nВи ввели неправильне значення! Введіть повторно: ");
+            }
+        }
     }
 
     /**

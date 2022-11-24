@@ -51,6 +51,7 @@ public class Plane {
                 +"\nКількість пасажирських місць: "+ passengerCapacity
         );
     }
+
     public String getName() {
         return name;
     }
